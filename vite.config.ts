@@ -13,7 +13,12 @@ const config = {
       provider: 'v8',
       reporter: ['text', 'html'],
       include: ['src/lib/**/*.ts', 'src/lib/**/*.tsx'],
-      exclude: ['src/lib/**/*.test.*', 'src/lib/**/*.spec.*', 'src/lib/**/__tests__/**', 'src/lib/**/index.ts'],
+      exclude: [
+        'src/lib/**/*.test.*',
+        'src/lib/**/*.spec.*',
+        'src/lib/**/__tests__/**',
+        'src/lib/**/index.ts',
+      ],
       lines: 80,
       functions: 80,
       branches: 80,

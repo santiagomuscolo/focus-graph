@@ -31,8 +31,12 @@ function Buttons() {
 
   return (
     <>
-      <button ref={refA} type="button">A</button>
-      <button ref={refB} type="button">B</button>
+      <button ref={refA} type="button">
+        A
+      </button>
+      <button ref={refB} type="button">
+        B
+      </button>
     </>
   )
 }
@@ -56,7 +60,7 @@ Connect nodes in a cycle so Tab goes “next” and Shift+Tab goes “prev”:
 useEffect(() => {
   graph.connect('a', 'b', 'next')
   graph.connect('b', 'c', 'next')
-  graph.connect('c', 'a', 'next')  // loop
+  graph.connect('c', 'a', 'next') // loop
   graph.connect('b', 'a', 'prev')
   graph.connect('c', 'b', 'prev')
 }, [graph])
@@ -70,7 +74,7 @@ Use `<FocusZone zoneId="action-bar" disabled={actionBarDisabled}>` to group node
 
 ```tsx
 <FocusZone zoneId="action-bar" disabled={actionBarDisabled}>
-  <SaveButton />  {/* useFocusNode inside; when disabled, Tab skips this node */}
+  <SaveButton /> {/* useFocusNode inside; when disabled, Tab skips this node */}
 </FocusZone>
 ```
 
@@ -118,14 +122,20 @@ restoreFocus()
 When `VITE_FOCUS_GRAPH_DEBUG__=true` in your `.env`, you can render the overlay and inspector inside `FocusProvider`:
 
 ```tsx
-import { __FOCUS_GRAPH_DEBUG__, FocusDebugOverlay, FocusGraphInspector } from 'focus-graph'
+import {
+  __FOCUS_GRAPH_DEBUG__,
+  FocusDebugOverlay,
+  FocusGraphInspector,
+} from 'focus-graph'
 
-{__FOCUS_GRAPH_DEBUG__ && (
-  <>
-    <FocusDebugOverlay enabled />
-    <FocusGraphInspector enabled pollIntervalMs={2000} />
-  </>
-)}
+{
+  __FOCUS_GRAPH_DEBUG__ && (
+    <>
+      <FocusDebugOverlay enabled />
+      <FocusGraphInspector enabled pollIntervalMs={2000} />
+    </>
+  )
+}
 ```
 
 Copy `.env.example` to `.env` and set the variable to `true` or `false`; Vite loads only `.env`, not `.env.example`.
@@ -146,12 +156,12 @@ Copy `.env.example` to `.env` and set the variable to `true` or `false`; Vite lo
 
 ### Components
 
-| Component | Props | Description |
-|-----------|--------|-------------|
-| `FocusProvider` | `children`, `keyBindings?`, `onEscape?`, `initialFocus?`, `verbosity?`, `focusTransition?`, `scrollIntoView?` | Provides the graph and key handling. Wrap the tree that uses the focus graph. |
-| `FocusZone` | `children`, `zoneId?`, `disabled?`, `trapFocus?` | Groups nodes; `disabled` marks them as skipped; `trapFocus` keeps focus inside the zone. |
-| `FocusDebugOverlay` | `enabled?` | Dev overlay that highlights the focused node (default: dev only). |
-| `FocusGraphInspector` | `enabled?`, `pollIntervalMs?` | Dev panel showing `graph.toJSON()` (nodes + edges). |
+| Component             | Props                                                                                                         | Description                                                                              |
+| --------------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `FocusProvider`       | `children`, `keyBindings?`, `onEscape?`, `initialFocus?`, `verbosity?`, `focusTransition?`, `scrollIntoView?` | Provides the graph and key handling. Wrap the tree that uses the focus graph.            |
+| `FocusZone`           | `children`, `zoneId?`, `disabled?`, `trapFocus?`                                                              | Groups nodes; `disabled` marks them as skipped; `trapFocus` keeps focus inside the zone. |
+| `FocusDebugOverlay`   | `enabled?`                                                                                                    | Dev overlay that highlights the focused node (default: dev only).                        |
+| `FocusGraphInspector` | `enabled?`, `pollIntervalMs?`                                                                                 | Dev panel showing `graph.toJSON()` (nodes + edges).                                      |
 
 ### FocusProvider props
 
@@ -164,12 +174,12 @@ Copy `.env.example` to `.env` and set the variable to `true` or `false`; Vite lo
 
 ### Hooks
 
-| Hook | Returns / purpose |
-|------|-------------------|
+| Hook                                           | Returns / purpose                                                                                                                                                      |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `useFocusNode({ id, zone?, ref?, metadata? })` | Ref callback to attach to a focusable element. Registers the node on mount, unregisters on unmount. Nodes inside a disabled `FocusZone` get `metadata.disabled: true`. |
-| `useFocusGraph()` | The `FocusGraph` instance (for `connect`, `disconnect`, `resolve`, `toJSON`, etc.). |
-| `useFocusZone()` | Current `zoneId` from the nearest `FocusZone`. |
-| `useFocusController()` | `{ focusNode(id), restoreFocus() }` for programmatic focus. |
+| `useFocusGraph()`                              | The `FocusGraph` instance (for `connect`, `disconnect`, `resolve`, `toJSON`, etc.).                                                                                    |
+| `useFocusZone()`                               | Current `zoneId` from the nearest `FocusZone`.                                                                                                                         |
+| `useFocusController()`                         | `{ focusNode(id), restoreFocus() }` for programmatic focus.                                                                                                            |
 
 ### FocusGraph (from useFocusGraph)
 
@@ -202,14 +212,14 @@ Copy `.env.example` to `.env` and set the variable to `true` or `false`; Vite lo
 
 ## Comparison with tab-based navigation
 
-| Aspect | Native tab order | Focus Graph |
-|--------|-------------------|-------------|
-| **Model** | DOM order (tabindex, source order) | Explicit graph: nodes + directional edges |
-| **Control** | Limited (tabindex, inert, tab order) | Full: you define every next/prev and optional zones |
-| **Loops** | Not defined | Configurable per direction (e.g. wrap at end) |
-| **Skipping** | `inert`, `tabindex=-1`, or remove from DOM | `metadata.disabled` or zone `disabled`; resolver skips |
-| **Modals** | Focus trap via focus management and often tabindex hacks | `FocusZone trapFocus` + `withinZoneId` in resolver |
-| **Testing** | Hard to assert “next focus is X” | Graph and resolver are pure; easy to unit test |
-| **Use case** | Simple forms, single column | Complex UIs, custom order, zones, modals |
+| Aspect       | Native tab order                                         | Focus Graph                                            |
+| ------------ | -------------------------------------------------------- | ------------------------------------------------------ |
+| **Model**    | DOM order (tabindex, source order)                       | Explicit graph: nodes + directional edges              |
+| **Control**  | Limited (tabindex, inert, tab order)                     | Full: you define every next/prev and optional zones    |
+| **Loops**    | Not defined                                              | Configurable per direction (e.g. wrap at end)          |
+| **Skipping** | `inert`, `tabindex=-1`, or remove from DOM               | `metadata.disabled` or zone `disabled`; resolver skips |
+| **Modals**   | Focus trap via focus management and often tabindex hacks | `FocusZone trapFocus` + `withinZoneId` in resolver     |
+| **Testing**  | Hard to assert “next focus is X”                         | Graph and resolver are pure; easy to unit test         |
+| **Use case** | Simple forms, single column                              | Complex UIs, custom order, zones, modals               |
 
 Use the focus graph when you need **predictable, custom keyboard order**, **zones**, or **modals**. Use native tab order when a simple, DOM-ordered flow is enough.

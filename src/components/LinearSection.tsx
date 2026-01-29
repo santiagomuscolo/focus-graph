@@ -17,7 +17,9 @@ export function LinearSection() {
 
   return (
     <section className="demo-section" aria-labelledby="linear-heading">
-      <h2 id="linear-heading" className="demo-section__title">Linear</h2>
+      <h2 id="linear-heading" className="demo-section__title">
+        Linear
+      </h2>
       <p className="demo-section__hint">Tab and Shift+Tab move focus A → B → C → A…</p>
       <div className="button-row">
         <button ref={refA} type="button" data-focus-id="linear-a">

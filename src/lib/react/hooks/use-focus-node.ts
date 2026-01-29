@@ -17,7 +17,9 @@ export interface UseFocusNodeOptions {
   metadata?: FocusNode['metadata']
 }
 
-export function useFocusNode(options: UseFocusNodeOptions): RefCallback<HTMLElement | null> {
+export function useFocusNode(
+  options: UseFocusNodeOptions
+): RefCallback<HTMLElement | null> {
   const { id, zone: zoneProp, ref: refProp, metadata } = options
   const focusValue = useContext(FocusContext)
   const zoneValue = useContext(ZoneContext)
@@ -57,7 +59,7 @@ export function useFocusNode(options: UseFocusNodeOptions): RefCallback<HTMLElem
       if (typeof refProp === 'function') {
         refProp(el)
       } else if (refProp != null && 'current' in refProp) {
-        (refProp as { current: HTMLElement | null }).current = el
+        ;(refProp as { current: HTMLElement | null }).current = el
       }
     },
     [graph, id, zoneId, effectiveMetadata, refProp]

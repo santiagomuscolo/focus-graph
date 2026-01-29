@@ -214,7 +214,12 @@ describe('FocusGraph', () => {
       expect(json.nodes[0]).toMatchObject({ id: 'a', priority: 1 })
       expect(json.nodes[1]).toMatchObject({ id: 'b', disabled: true })
       expect(json.edges).toHaveLength(1)
-      expect(json.edges[0]).toEqual({ fromId: 'a', toId: 'b', direction: 'next', weight: 0 })
+      expect(json.edges[0]).toEqual({
+        fromId: 'a',
+        toId: 'b',
+        direction: 'next',
+        weight: 0,
+      })
     })
   })
 })

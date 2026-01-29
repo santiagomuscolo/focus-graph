@@ -35,7 +35,9 @@ export function ModalSection({ onClose }: { onClose: () => void }) {
         aria-labelledby="modal-title"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 id="modal-title" className="modal__title">Focus trap</h2>
+        <h2 id="modal-title" className="modal__title">
+          Focus trap
+        </h2>
         <p className="modal__hint">Tab cycles inside the dialog. Escape closes.</p>
         {ready && (
           <FocusZone zoneId="modal" trapFocus>

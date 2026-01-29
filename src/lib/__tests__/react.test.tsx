@@ -30,9 +30,15 @@ describe('React integration', () => {
       }, [])
       return (
         <>
-          <button ref={ref} type="button" data-testid="target-btn">Click</button>
-          <button type="button" onClick={() => focusNode('btn')}>Focus btn</button>
-          <span data-testid="has-node">{mounted && graph.hasNode('btn') ? 'yes' : 'no'}</span>
+          <button ref={ref} type="button" data-testid="target-btn">
+            Click
+          </button>
+          <button type="button" onClick={() => focusNode('btn')}>
+            Focus btn
+          </button>
+          <span data-testid="has-node">
+            {mounted && graph.hasNode('btn') ? 'yes' : 'no'}
+          </span>
         </>
       )
     }
@@ -70,7 +76,9 @@ describe('React integration', () => {
       const node = mounted ? graph.getNode('save') : null
       return (
         <>
-          <button ref={ref} type="button">Save</button>
+          <button ref={ref} type="button">
+            Save
+          </button>
           <span data-testid="zone-id">{node?.zoneId ?? 'none'}</span>
         </>
       )
@@ -98,10 +106,18 @@ describe('Keyboard handling', () => {
       graph.connect('a', 'b', 'next')
       return (
         <>
-          <button ref={refA} type="button" data-testid="btn-a">A</button>
-          <button ref={refB} type="button" data-testid="btn-b">B</button>
-          <button type="button" onClick={() => focusNode('b')}>Go to B</button>
-          <button type="button" onClick={() => restoreFocus()}>Restore</button>
+          <button ref={refA} type="button" data-testid="btn-a">
+            A
+          </button>
+          <button ref={refB} type="button" data-testid="btn-b">
+            B
+          </button>
+          <button type="button" onClick={() => focusNode('b')}>
+            Go to B
+          </button>
+          <button type="button" onClick={() => restoreFocus()}>
+            Restore
+          </button>
         </>
       )
     }
@@ -135,9 +151,15 @@ describe('Keyboard handling', () => {
       return (
         <>
           {ready && <span data-testid="ready" />}
-          <button ref={refA} type="button" data-testid="btn-a">A</button>
-          <button ref={refB} type="button" data-testid="btn-b">B</button>
-          <button ref={refC} type="button" data-testid="btn-c">C</button>
+          <button ref={refA} type="button" data-testid="btn-a">
+            A
+          </button>
+          <button ref={refB} type="button" data-testid="btn-b">
+            B
+          </button>
+          <button ref={refC} type="button" data-testid="btn-c">
+            C
+          </button>
         </>
       )
     }
@@ -182,7 +204,11 @@ describe('Disabled zone', () => {
   it('nodes in disabled zone are skipped by resolve', async () => {
     function FooterSaveButton() {
       const refSave = useFocusNode({ id: 'save' })
-      return <button ref={refSave} type="button" data-testid="save">Save</button>
+      return (
+        <button ref={refSave} type="button" data-testid="save">
+          Save
+        </button>
+      )
     }
     function Inner() {
       const refMain = useFocusNode({ id: 'main' })
@@ -197,11 +223,15 @@ describe('Disabled zone', () => {
       return (
         <>
           {ready && <span data-testid="ready-disabled" />}
-          <button ref={refMain} type="button" data-testid="main">Main</button>
+          <button ref={refMain} type="button" data-testid="main">
+            Main
+          </button>
           <FocusZone zoneId="footer" disabled>
             <FooterSaveButton />
           </FocusZone>
-          <button ref={refNext} type="button" data-testid="next">Next</button>
+          <button ref={refNext} type="button" data-testid="next">
+            Next
+          </button>
         </>
       )
     }
@@ -234,8 +264,12 @@ describe('Modal-like zone', () => {
       return (
         <FocusZone zoneId="modal">
           {ready && <span data-testid="modal-ready" />}
-          <button ref={ref1} type="button" data-testid="m1">One</button>
-          <button ref={ref2} type="button" data-testid="m2">Two</button>
+          <button ref={ref1} type="button" data-testid="m1">
+            One
+          </button>
+          <button ref={ref2} type="button" data-testid="m2">
+            Two
+          </button>
         </FocusZone>
       )
     }
@@ -260,8 +294,12 @@ describe('Modal-like zone', () => {
       const refM2 = useFocusNode({ id: 'modal-2' })
       return (
         <>
-          <button ref={refM1} type="button" data-testid="tm1">Modal 1</button>
-          <button ref={refM2} type="button" data-testid="tm2">Modal 2</button>
+          <button ref={refM1} type="button" data-testid="tm1">
+            Modal 1
+          </button>
+          <button ref={refM2} type="button" data-testid="tm2">
+            Modal 2
+          </button>
         </>
       )
     }
@@ -280,8 +318,12 @@ describe('Modal-like zone', () => {
       return (
         <>
           {ready && <span data-testid="trap-ready" />}
-          <button ref={refA} type="button" data-testid="root-a">Root A</button>
-          <button ref={refB} type="button" data-testid="root-b">Root B</button>
+          <button ref={refA} type="button" data-testid="root-a">
+            Root A
+          </button>
+          <button ref={refB} type="button" data-testid="root-b">
+            Root B
+          </button>
           <FocusZone zoneId="modal" trapFocus>
             <ModalButtons />
           </FocusZone>
@@ -327,9 +369,7 @@ describe('Dev tools', () => {
         </FocusZone>
       </FocusProvider>
     )
-    expect(warn).toHaveBeenCalledWith(
-      expect.stringContaining('trapFocus')
-    )
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('trapFocus'))
     warn.mockRestore()
   })
 })

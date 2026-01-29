@@ -90,7 +90,9 @@ button {
   background: var(--btn-bg, rgba(255, 255, 255, 0.06));
   color: var(--fg, rgba(255, 255, 255, 0.92));
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 
 button:hover {
