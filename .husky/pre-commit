@@ -1,7 +1,12 @@
 echo "🔨 Running build..."
 
-bun run test:run
 bun run build
+
+echo "🧪 Running tests..."
+
+bun run test:run
+
+echo "💅 Running formatting..."
 bun run format && git add -A .
 
 echo "✅ Pre-commit checks passed!"

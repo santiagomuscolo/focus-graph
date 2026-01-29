@@ -1,2 +1,1 @@
-export { FocusGraph } from './focus-graph';
-
+export { FocusGraph } from './focus-graph'

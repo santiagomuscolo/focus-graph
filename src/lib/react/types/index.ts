@@ -21,11 +21,13 @@ export type ZoneContextValue = {
 
 export type InitialFocusStrategy = 'first' | string
 
-export type ScrollIntoViewOption = boolean | {
-  block?: ScrollLogicalPosition
-  inline?: ScrollLogicalPosition
-  behavior?: ScrollBehavior
-}
+export type ScrollIntoViewOption =
+  | boolean
+  | {
+      block?: ScrollLogicalPosition
+      inline?: ScrollLogicalPosition
+      behavior?: ScrollBehavior
+    }
 
 export type FocusProviderProps = {
   children: ReactNode

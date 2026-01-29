@@ -106,10 +106,7 @@ export class FocusGraph {
     if (nextId != null) return nextId
 
     if (loop) {
-      const isPrev =
-        direction === 'prev' ||
-        direction === 'left' ||
-        direction === 'up'
+      const isPrev = direction === 'prev' || direction === 'left' || direction === 'up'
       const wrapTarget = isPrev
         ? this.getLastFocusableNodeInZone(withinZoneId)
         : this.getFirstFocusableNodeInZone(withinZoneId)

@@ -1,7 +1,22 @@
 import { useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useFocusGraph } from '../hooks/use-focus-graph'
-import { BODY_MAX_HEIGHT, BUTTON_STYLE, FOOTER_STYLE, HEADER_ACCENT_STYLE, HEADER_MINIMIZED_STYLE, HEADER_STYLE, HEADER_TITLE_STYLE, ICON_BUTTON_STYLE, PANEL_STYLE, PRE_STYLE, SCROLL_STYLE, SECTION_LABEL_LINE_STYLE, SECTION_LABEL_STYLE, SECTION_STYLE } from './styles/focus-graph-inspector'
+import {
+  BODY_MAX_HEIGHT,
+  BUTTON_STYLE,
+  FOOTER_STYLE,
+  HEADER_ACCENT_STYLE,
+  HEADER_MINIMIZED_STYLE,
+  HEADER_STYLE,
+  HEADER_TITLE_STYLE,
+  ICON_BUTTON_STYLE,
+  PANEL_STYLE,
+  PRE_STYLE,
+  SCROLL_STYLE,
+  SECTION_LABEL_LINE_STYLE,
+  SECTION_LABEL_STYLE,
+  SECTION_STYLE,
+} from './styles/focus-graph-inspector'
 
 export type FocusGraphInspectorProps = {
   enabled?: boolean
@@ -30,12 +45,8 @@ export function FocusGraphInspector({
 
   if (!enabled) return null
 
-  const nodesJson = snapshot
-    ? JSON.stringify(snapshot.nodes, null, 2)
-    : null
-  const edgesJson = snapshot
-    ? JSON.stringify(snapshot.edges, null, 2)
-    : null
+  const nodesJson = snapshot ? JSON.stringify(snapshot.nodes, null, 2) : null
+  const edgesJson = snapshot ? JSON.stringify(snapshot.edges, null, 2) : null
   const loading = !snapshot
   const nodeCount = snapshot?.nodes.length ?? 0
   const edgeCount = snapshot?.edges.length ?? 0
@@ -75,11 +86,11 @@ export function FocusGraphInspector({
         onKeyDown={
           minimized
             ? (e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault()
-                setMinimized(false)
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  setMinimized(false)
+                }
               }
-            }
             : undefined
         }
       >
@@ -106,11 +117,31 @@ export function FocusGraphInspector({
           }}
         >
           {minimized ? (
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
               <polyline points="18 15 12 9 6 15" />
             </svg>
           ) : (
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
               <polyline points="6 9 12 15 18 9" />
             </svg>
           )}

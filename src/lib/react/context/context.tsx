@@ -89,10 +89,7 @@ export function FocusProvider({
       if (verbosity !== 'off' && liveRegionRef.current) {
         const name = getAccessibleName(el) || id
         const role = node?.metadata?.role
-        const text =
-          verbosity === 'full' && role
-            ? `${role}: ${name}`
-            : name
+        const text = verbosity === 'full' && role ? `${role}: ${name}` : name
         liveRegionRef.current.textContent = text
       }
 
@@ -227,7 +224,5 @@ export function FocusZone({
     return () => focusValue.unregisterTrapZone(zoneId)
   }, [trapFocus, zoneId, focusValue])
 
-  return (
-    <ZoneContext.Provider value={value}>{children}</ZoneContext.Provider>
-  )
+  return <ZoneContext.Provider value={value}>{children}</ZoneContext.Provider>
 }

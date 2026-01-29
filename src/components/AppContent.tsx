@@ -64,12 +64,22 @@ export function AppContent({
         </label>
       </div>
 
-      <section className="demo-section demo-section--modal" aria-labelledby="modal-section-heading">
-        <h2 id="modal-section-heading" className="demo-section__title">Modal & focus trap</h2>
+      <section
+        className="demo-section demo-section--modal"
+        aria-labelledby="modal-section-heading"
+      >
+        <h2 id="modal-section-heading" className="demo-section__title">
+          Modal & focus trap
+        </h2>
         <p className="demo-section__hint">
-          Open the dialog to see focus trapped inside. Tab cycles between the two buttons; Escape closes.
+          Open the dialog to see focus trapped inside. Tab cycles between the two buttons;
+          Escape closes.
         </p>
-        <button type="button" className="btn btn--primary" onClick={() => setModalOpen(true)}>
+        <button
+          type="button"
+          className="btn btn--primary"
+          onClick={() => setModalOpen(true)}
+        >
           Open modal
         </button>
         {modalOpen && <ModalSection onClose={() => setModalOpen(false)} />}

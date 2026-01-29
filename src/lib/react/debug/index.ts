@@ -1,8 +1,10 @@
 export { FocusDebugOverlay, type FocusDebugOverlayProps } from './focus-debug-overlay'
-export { FocusGraphInspector, type FocusGraphInspectorProps } from './focus-graph-inspector'
+export {
+  FocusGraphInspector,
+  type FocusGraphInspectorProps,
+} from './focus-graph-inspector'
 export {
   warnInitialFocusNodeNotFound,
   warnInvalidKeyBindings,
-  warnTrapFocusWithoutZoneId
+  warnTrapFocusWithoutZoneId,
 } from './warn-invalid-config'
-

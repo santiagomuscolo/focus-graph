@@ -1,16 +1,7 @@
-const VALID_DIRECTIONS = new Set([
-  'up',
-  'down',
-  'left',
-  'right',
-  'next',
-  'prev',
-])
+const VALID_DIRECTIONS = new Set(['up', 'down', 'left', 'right', 'next', 'prev'])
 
 function isDev(): boolean {
-  return (
-    typeof process !== 'undefined' && process.env?.NODE_ENV !== 'production'
-  )
+  return typeof process !== 'undefined' && process.env?.NODE_ENV !== 'production'
 }
 
 export function warnTrapFocusWithoutZoneId(): void {
@@ -27,9 +18,7 @@ export function warnInitialFocusNodeNotFound(nodeId: string): void {
   )
 }
 
-export function warnInvalidKeyBindings(
-  keyBindings: Record<string, unknown>
-): void {
+export function warnInvalidKeyBindings(keyBindings: Record<string, unknown>): void {
   if (!isDev()) return
   for (const [key, value] of Object.entries(keyBindings)) {
     if (value != null && !VALID_DIRECTIONS.has(value as string)) {
