@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import type { FocusGraph } from '../../graph'
-import { FocusContext } from '../context/context'
+import { FocusContext } from '../context/context-def'
 
 export function useFocusGraph(): FocusGraph {
   const value = useContext(FocusContext)

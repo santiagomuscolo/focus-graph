@@ -8,7 +8,7 @@ import {
   type RefCallback,
 } from 'react'
 import type { FocusNode } from '../../types'
-import { FocusContext, ZoneContext } from '../context/context'
+import { FocusContext, ZoneContext } from '../context/context-def'
 
 export interface UseFocusNodeOptions {
   id: string
@@ -59,6 +59,7 @@ export function useFocusNode(
       if (typeof refProp === 'function') {
         refProp(el)
       } else if (refProp != null && 'current' in refProp) {
+        // eslint-disable-next-line react-hooks/immutability -- ref.current is the standard API
         ;(refProp as { current: HTMLElement | null }).current = el
       }
     },

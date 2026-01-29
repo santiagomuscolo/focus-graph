@@ -23,7 +23,7 @@ export function ModalSection({ onClose }: { onClose: () => void }) {
   useEffect(() => {
     graph.connect('modal-1', 'modal-2', 'next')
     graph.connect('modal-2', 'modal-1', 'prev')
-    setReady(true)
+    queueMicrotask(() => setReady(true))
   }, [graph])
 
   return (

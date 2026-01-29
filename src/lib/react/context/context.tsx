@@ -1,12 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { FocusGraph } from '../../graph'
 import { getAccessibleName } from '../a11y'
 import { useReducedMotion } from '../a11y/use-reduced-motion'
@@ -22,6 +14,7 @@ import type {
   FocusZoneProps,
   ZoneContextValue,
 } from '../types'
+import { FocusContext, ZoneContext } from './context-def'
 
 const FOCUS_TRANSITION_DURATION_MS = 200
 
@@ -36,10 +29,6 @@ const visuallyHiddenStyle: React.CSSProperties = {
   whiteSpace: 'nowrap',
   border: 0,
 }
-
-export const FocusContext = createContext<FocusContextValue | null>(null)
-
-export const ZoneContext = createContext<ZoneContextValue>({ zoneId: undefined })
 
 const DEFAULT_SCROLL_INTO_VIEW = {
   block: 'nearest' as ScrollLogicalPosition,

@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { FocusContext } from '../context/context'
+import { FocusContext } from '../context/context-def'
 
 export function useFocusController(): {
   focusNode: (id: string) => void
