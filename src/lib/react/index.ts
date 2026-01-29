@@ -1,5 +1,6 @@
 export { getAccessibleName, useReducedMotion } from './a11y'
-export { FocusContext, FocusProvider, FocusZone, ZoneContext } from './context/context'
+export { FocusContext, ZoneContext } from './context/context-def'
+export { FocusProvider, FocusZone } from './context/context'
 export {
   FocusDebugOverlay,
   FocusGraphInspector,
