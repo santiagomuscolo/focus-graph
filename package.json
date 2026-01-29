@@ -1,5 +1,5 @@
 {
-  "name": "focus-graph",
+  "name": "@santimuscolo/focus-graph",
   "version": "0.0.1",
   "description": "Keyboard-first navigation for React via an explicit focus graph",
   "type": "module",
